@@ -38,14 +38,13 @@
       const { ipcRenderer } = require('electron');
 
       ipcRenderer.on('editor-event', (event, arg) => {
-        // event.sender.send('editor-reply', `Received ${arg}`);
 
         if (arg === 'toggle-bold') {
           editor.toggleBold();
         }
 
         if (arg === 'save') {
-          event.sender.send('save', editor.value());
+          ipcRenderer.send('save', editor.value());
         }
       });
 
